@@ -1,5 +1,5 @@
 import '../App.css'
-
+import { useState,useEffect, act } from 'react'
 function MainContent({ course, student, date, grade }) {
     
     return (
@@ -12,13 +12,41 @@ function MainContent({ course, student, date, grade }) {
         </div>
     )
 }
-function Menu() {
-    const handleMenuClick = (item) => {
-      alert(`Vous avez cliqué sur: ${item}`);
+function ActiveItem({activeItem}) {
+    
+    return (
+        <div className="student-card">
+           <p>Élément actuellement sélectionné : {activeItem}</p>
+        </div>
+    )
+}
+
+function NavItem({ element, activeItem, setActiveItem }) {
+    const isActive = activeItem === element;
+    
+    const handleClick = () => {
+      setActiveItem(element);
+     
+      alert(`Vous avez cliqué sur: ${element}`);
     };
   
     return (
-        <div className="App">
+      <li className="nav-item">
+        <a 
+          className={`nav-link ${isActive ? 'active badge text-bg-light' : ''}`} 
+          href="#" 
+          onClick={handleClick}
+        >
+          {element}
+        </a>
+      </li>
+    );
+  }
+function Menu({activeItem,setActiveItem}) {
+    
+    const menuItems = ["Notes", "Étudiants", "Matières", "À propos"];
+    return (
+        <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
           <div className="container-fluid">
             <a className="navbar-brand" href="#">Menu</a>
@@ -26,38 +54,22 @@ function Menu() {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a className="nav-link active" href="#" onClick={() => handleMenuClick('Notes')}>
-                    <i className="bi bi-journal-text me-2"></i>
-                    Notes
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#" onClick={() => handleMenuClick('Etudiants')}>
-                    <i className="bi bi-people-fill me-2"></i>
-                    Étudiants
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#" onClick={() => handleMenuClick('Matières')}>
-                    <i className="bi bi-book-half me-2"></i>
-                    Matières
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#" onClick={() => handleMenuClick('A propos')}>
-                    <i className="bi bi-info-circle me-2"></i>
-                    À propos
-                  </a>
-                </li>
+              <ul className="navbar-nav d-flex justify-content-center align-items-center">
+              {menuItems.map(item => (
+                <NavItem 
+                  key={item}
+                  element={item}
+                  activeItem={activeItem}
+                  setActiveItem={setActiveItem}
+                />
+              ))}
               </ul>
             </div>
           </div>
         </nav>
-      </div>
+      </>
     );
   }
   
 
-export {MainContent,Menu}
+export {MainContent,Menu,ActiveItem}
