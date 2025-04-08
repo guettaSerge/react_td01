@@ -1,11 +1,11 @@
 
 import './App.css'
 
-function Footer() {
+function Footer({nom,prenom,Annee}) {
   return (
     <>
       <div>
-        <p>Tous droits réservés - RAVELOMAHEFA Serge Gustave</p>
+        <p>© {Annee} - {prenom}.{nom}, Tous droits réservés.</p>
       </div>
     </>
   )
