@@ -1,10 +1,14 @@
 import './App.css'
 
-function MainContent({jour,mois,annee,heure,minute,seconds}) {
+function MainContent({ course, student, date, grade }) {
     
     return (
-        <div>
-            <p>Bonjour, on est le {jour},{mois},{annee} et il est {heure}:{minute}:{seconds}</p>
+        <div className="student-card">
+            <h3>{course}</h3>
+            <p><strong>Nom :</strong> {student.firstname} {student.lastname}</p>
+            <p><strong>ID Étudiant :</strong> {student.id}</p>
+            <p><strong>Date :</strong> {date}</p>
+            <p><strong>Note :</strong> {grade}</p>
         </div>
     )
 }
