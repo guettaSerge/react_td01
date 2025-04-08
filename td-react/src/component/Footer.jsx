@@ -1,6 +1,4 @@
 
-import './App.css'
-
 function Footer({nom,prenom,Annee}) {
   return (
     <>

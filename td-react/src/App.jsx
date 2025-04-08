@@ -1,9 +1,9 @@
 import { useState,useEffect } from 'react'
 import './App.css'
 import data from '../../data.json'
-import Header from './Header.jsx'
-import MainContent from './MainContent.jsx'
-import Footer from './Footer.jsx'
+import Header from './component/Header.jsx'
+import MainContent from './component/MainContent.jsx'
+import Footer from './component/Footer.jsx'
 
 function App() {
   
